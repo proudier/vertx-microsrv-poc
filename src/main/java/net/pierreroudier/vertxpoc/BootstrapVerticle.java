@@ -3,6 +3,7 @@ package net.pierreroudier.vertxpoc;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.FaviconHandler;
@@ -12,7 +13,7 @@ public class BootstrapVerticle extends AbstractVerticle {
 	public static final String DEFAULT_HOMEPAGE = "/doc/api.html";
 
 	public void start(Future<Void> startFuture) {
-		HttpServer server = vertx.createHttpServer();
+		HttpServer server = vertx.createHttpServer(new HttpServerOptions().setCompressionSupported(true));
 		Router router = Router.router(vertx);
 
 		// Favicon
